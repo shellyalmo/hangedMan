@@ -117,3 +117,8 @@ const main = () => {
 };
 
 main();
+
+// add bootstrap
+//instead of console log - use get element by id, use a printer function that adds a line to the
+//DOM element
+// prompt is better as form field
