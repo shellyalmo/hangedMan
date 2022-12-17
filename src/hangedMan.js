@@ -1,27 +1,13 @@
-/* This program is simulating the Hanged Man game. The program generates a random word from an existing words archive
-and hides its letters by asterisks.
-The program gets from the user an input which has to be either 
-a single letter guessed or the entire correct word guessed. If the input is neither of those, the user sees a warning message.
-Then the program checks if the single letter appears inside the random generated word (by string method).
-If so, the program reveals the correct letter in the hidden word and replaces the asterisk with the correct letter.
-If the guessed letter isn't correct, the program reduces the amount of guesses the user has and alerts the user.
-Finally, the program tells the user if they won, or lost and shows what the word was.
-*/
-
-console.log(
-  "%cWelcome to Hang Man!",
-  "color:purple;font-family:system-ui;font-size:4rem;-webkit-text-stroke: 1px black;font-weight:bold"
-);
-
 const main = () => {
+
   /*this function checks if the user input is only a letter and one character long */
   const checkGuessValidity = (guess) => {
     if (guess.length === 1 && guess.match(/[a-zA-Z]/)) {
       guess = guess.toLowerCase(); // not case sensitive
-      console.log(guess);
+      alert(guess);
       return true;
     } else {
-      console.log("The guess is invalid. Please try again.\n");
+      alert("The guess is invalid. Please try again.");
       return false;
     }
   };
@@ -35,10 +21,10 @@ const main = () => {
   /*this function checks if the guessed letter is part of the word*/
   const isGuessInsideWord = (guess) => {
     if (chosenWord.includes(guess)) {
-      console.log("Correct guess!");
+      alert("Correct guess!");
       return guess;
     } else {
-      console.log("Wrong guess!");
+      alert("Wrong guess!");
       return false;
     }
   };
@@ -50,7 +36,7 @@ const main = () => {
     if (isGuessCorrect === false) {
       numGuesses -= 1;
     }
-    console.log("You have " + numGuesses + " guesses.\n");
+    alert("You have " + numGuesses + " guesses.\n");
     return numGuesses;
   };
 
@@ -65,7 +51,7 @@ const main = () => {
       }
     }
 
-    console.log(hiddenWord);
+    alert(hiddenWord);
     return hiddenWord;
   };
 
@@ -74,14 +60,14 @@ const main = () => {
   /*this function tells the user if they won or lost*/
   const winnerOrLoserMessage = () => {
     if (hiddenWord.includes("*") === false) {
-      console.log("Wow you are good!!\nYou won, bye bye!");
+      alert("Wow you are good!!\nYou won, bye bye!");
       numGuesses = 0;
     } else if (numGuesses <= 0 && hiddenWord.includes("*") === true) {
-      console.log("Sorry you lost. The word was " + chosenWord + ".\nBye bye!");
+      alert("Sorry you lost. The word was " + chosenWord + ".\nBye bye!");
     }
   };
 
-  let numGuesses = 10;
+  let numGuesses = 1;
   let words = [
     "freedom",
     "morning",
@@ -99,9 +85,11 @@ const main = () => {
   let hiddenWord = chosenWord.replace(/[a-zA-Z]/g, "*");
 
   while (numGuesses > 0) {
-    let guess = prompt("What is your guess?") || "";
+    
+    let guess =" hi"
+    // let guess = prompt("What is your guess?") || "";
     if (guess === chosenWord) {
-      console.log("Wow you are good!!\nYou won, bye bye!");
+      alert("Wow you are good!!\nYou won, bye bye!");
       numGuesses = 0;
       break;
     }
