@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      property="og:image"
-      content="./assets/hangman.png"
-    />
+    <meta property="og:image" content="./assets/hangman.png" />
     <meta name="author" content="Shelly Almoznino" />
     <meta
       property="og:description"
@@ -20,17 +17,61 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <link rel="manifest" href="/assets/site.webmanifest">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/assets/site.webmanifest" />
     <title>Hangman Game</title>
   </head>
   <body>
-    <h1>Welcome to Hangman game!</h1>
-    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h1>Welcome to Hangman game!</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <h4>The secret word is: <strong>****</strong></h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <form class="form-inline">
+            <div class="form-group mb-2">
+              <h4>What is your guess? </h4>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <input type="text" placeholder="enter only one letter...">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Guess</button>
+          </form>
+        </div>
+        <div class="col-sm">
+          <h4>number of guesses: 4</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <h4>Letters you used: <del>y</del></h4>
+        </div>
+      </div>
+    </div>
   </body>
-  <script
-    src="hangedMan.js"></script>
-  </script>
+  <!-- <script
+    src="hangedMan.js"></script> -->
 </html>
