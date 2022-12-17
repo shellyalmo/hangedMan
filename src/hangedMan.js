@@ -84,7 +84,7 @@ const main = () => {
   let chosenWord = chooseRandomWord(words);
   let hiddenWord = chosenWord.replace(/[a-zA-Z]/g, "*");
 
-  while (numGuesses > 0) {
+  while (numGuesses > 1) {
 
     // let guess =" hi"
     let guess = prompt("What is your guess?") || "";
