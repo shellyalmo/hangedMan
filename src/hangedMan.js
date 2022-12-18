@@ -20,7 +20,10 @@ const isGuessInsideWord = (guess) => {
   if (chosenWord.includes(guess)) {
     alert("Correct guess!");
     return guess;
-  } else {
+  } else if (!chosenWord.includes(guess) && usedLetters.includes(guess)) {
+    alert("You already guessed that. Please guess a new letter.");
+  } 
+  else {
     alert("Wrong guess!");
     usedLetters.push(guess);
     document.getElementById("usedLetters").innerHTML = usedLetters;
@@ -62,13 +65,14 @@ const winnerMessage = () => {
   playAgainMessage();
 };
 
-// this function tells the user if they won
+// this function tells the user if they lost
 const loserMessage = () => {
   let losingMessage = `You lost! the word was: ${chosenWord}`;
   document.getElementById("gameOver").innerHTML = losingMessage;
   playAgainMessage();
 };
 
+// TODO:this function asks the user if they want to play again and restarts the screen
 const playAgainMessage = () => {
   document.getElementById("playAgain").innerHTML = "Play Again?";
   let yesBtn = document.createElement("button");
@@ -113,8 +117,16 @@ const guessHandler = () => {
     let correctGuess = isGuessInsideWord(guess);
     numGuessesCalculator(correctGuess);
     hiddenWordPrinter(correctGuess);
-  } if (numGuesses === 0 && hiddenWord.includes("*") === true) {
+  }
+  if (numGuesses === 0 && hiddenWord.includes("*") === true) {
     loserMessage();
   }
-  // winnerOrLoserMessage();
 };
+//TODO:
+// fix: dont repeat same letter
+// fix: yes/no buttons under the correct div element
+// feat: yes/no buttons affect the next screen
+// fix: improve UI UX and style
+// refactor: clean code not repetitive
+// deploy
+// update github and post linkedin
