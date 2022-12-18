@@ -22,7 +22,8 @@ const isGuessInsideWord = (guess) => {
     alert("Correct guess!");
     return guess;
   } else {
-    alert("Wrong guess!");
+    usedLetters.push(guess)
+    document.getElementById("usedLetters").innerHTML = usedLetters;
     return false;
   }
 };
@@ -65,7 +66,7 @@ const winnerOrLoserMessage = () => {
 
 //TODO: write "play again?" function
 
-let numGuesses = 10; 
+let numGuesses = 3; 
 document.getElementById("numGuesses").innerHTML = numGuesses;
 
 let words = [
@@ -82,13 +83,14 @@ let words = [
   "performance",
 ];
 
+let usedLetters=[];
+
 let chosenWord = chooseRandomWord(words);
 document.getElementById("chosenWord").innerHTML = chosenWord;
 let hiddenWord = chosenWord.replace(/[a-zA-Z]/g, "*");
 document.getElementById("hiddenWord").innerHTML = hiddenWord;
 
 const guessHandler = () => {
-  // TODO: replace while loop
   let guess = document.getElementById("guess").value;
   if (guess === chosenWord) {
     let winningMessage = `You won! the word was: ${chosenWord}`;
