@@ -73,6 +73,7 @@ const loserMessage = () => {
 
 // TODO:this function asks the user if they want to play again and restarts the screen
 const playAgainMessage = () => {
+  document.getElementById("guess").disabled = true;
   document.getElementById("playAgain").innerHTML = "Play Again?";
   let yesBtn = document.createElement("button");
   yesBtn.className = "btn btn-success";
@@ -111,7 +112,10 @@ document.getElementById("hiddenWord").innerHTML = hiddenWord;
 
 const guessHandler = () => {
   let guess = document.getElementById("guess").value.toLowerCase();
-  if (guess === chosenWord && numGuesses > 0) {
+  if(document.getElementById("guess").disabled === true){
+    alert("Game Over!")
+  }
+  else if (guess === chosenWord && numGuesses > 0) {
     winnerMessage();
   } else if (checkGuessValidity(guess)) {
     let correctGuess = isGuessInsideWord(guess);
@@ -125,7 +129,7 @@ const guessHandler = () => {
   }
 };
 //TODO:
-// fix: yes no buttons should appear just once
+// fix: yes no buttons should appear just once - end game dont accept more input
 // fix: yes/no buttons under the correct div element
 // feat: yes/no buttons affect the next screen
 // fix: improve UI UX and style
