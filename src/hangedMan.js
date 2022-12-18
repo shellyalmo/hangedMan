@@ -77,14 +77,15 @@ const playAgainMessage = () => {
   document.getElementById("playAgain").innerHTML = "Play Again?";
   let yesBtn = document.createElement("button");
   yesBtn.className = "btn btn-success";
+  yesBtn.id="newGame"
   yesBtn.innerHTML = "Yes";
   document.getElementById("playAgain").appendChild(yesBtn);
-  // document.body.appendChild(yesBtn);
   let noBtn = document.createElement("button");
   noBtn.className = "btn btn-danger";
   noBtn.innerHTML = "No";
   document.getElementById("playAgain").appendChild(noBtn);
-  // document.body.appendChild(noBtn);
+
+  document.getElementById("newGame").setAttribute("onclick", "location.reload()");
 };
 
 let numGuesses = 4;
@@ -129,9 +130,11 @@ const guessHandler = () => {
     }
   }
 };
+
 //TODO:
 // feat: yes/no buttons affect the next screen
 // fix: improve UI UX and style
 // refactor: clean code not repetitive
+// delete secret word from screen
 // deploy
 // update github and post linkedin
