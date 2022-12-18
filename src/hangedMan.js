@@ -78,11 +78,13 @@ const playAgainMessage = () => {
   let yesBtn = document.createElement("button");
   yesBtn.className = "btn btn-success";
   yesBtn.innerHTML = "Yes";
-  document.body.appendChild(yesBtn);
+  document.getElementById("playAgain").appendChild(yesBtn);
+  // document.body.appendChild(yesBtn);
   let noBtn = document.createElement("button");
   noBtn.className = "btn btn-danger";
   noBtn.innerHTML = "No";
-  document.body.appendChild(noBtn);
+  document.getElementById("playAgain").appendChild(noBtn);
+  // document.body.appendChild(noBtn);
 };
 
 let numGuesses = 4;
@@ -112,10 +114,9 @@ document.getElementById("hiddenWord").innerHTML = hiddenWord;
 
 const guessHandler = () => {
   let guess = document.getElementById("guess").value.toLowerCase();
-  if(document.getElementById("guess").disabled === true){
-    alert("Game Over!")
-  }
-  else if (guess === chosenWord && numGuesses > 0) {
+  if (document.getElementById("guess").disabled === true) {
+    alert("Game Over!");
+  } else if (guess === chosenWord && numGuesses > 0) {
     winnerMessage();
   } else if (checkGuessValidity(guess)) {
     let correctGuess = isGuessInsideWord(guess);
@@ -129,8 +130,6 @@ const guessHandler = () => {
   }
 };
 //TODO:
-// fix: yes no buttons should appear just once - end game dont accept more input
-// fix: yes/no buttons under the correct div element
 // feat: yes/no buttons affect the next screen
 // fix: improve UI UX and style
 // refactor: clean code not repetitive
