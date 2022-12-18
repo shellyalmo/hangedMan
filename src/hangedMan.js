@@ -22,8 +22,7 @@ const isGuessInsideWord = (guess) => {
     return guess;
   } else if (!chosenWord.includes(guess) && usedLetters.includes(guess)) {
     alert("You already guessed that. Please guess a new letter.");
-  } 
-  else {
+  } else {
     alert("Wrong guess!");
     usedLetters.push(guess);
     document.getElementById("usedLetters").innerHTML = usedLetters;
@@ -85,21 +84,22 @@ const playAgainMessage = () => {
   document.body.appendChild(noBtn);
 };
 
-let numGuesses = 3;
+let numGuesses = 4;
 document.getElementById("numGuesses").innerHTML = numGuesses;
 
 let words = [
-  "freedom",
-  "morning",
-  "recursion",
-  "burger",
-  "object",
-  "container",
-  "debugger",
-  "python",
-  "console",
-  "network",
-  "performance",
+  "high",
+  // "freedom",
+  // "morning",
+  // "recursion",
+  // "burger",
+  // "object",
+  // "container",
+  // "debugger",
+  // "python",
+  // "console",
+  // "network",
+  // "performance",
 ];
 
 let usedLetters = [];
@@ -111,19 +111,21 @@ document.getElementById("hiddenWord").innerHTML = hiddenWord;
 
 const guessHandler = () => {
   let guess = document.getElementById("guess").value.toLowerCase();
-  if (guess === chosenWord) {
+  if (guess === chosenWord && numGuesses > 0) {
     winnerMessage();
   } else if (checkGuessValidity(guess)) {
     let correctGuess = isGuessInsideWord(guess);
     numGuessesCalculator(correctGuess);
     hiddenWordPrinter(correctGuess);
-  }
-  if (numGuesses === 0 && hiddenWord.includes("*") === true) {
-    loserMessage();
+    if (numGuesses > 0 && hiddenWord.includes("*") === false) {
+      winnerMessage();
+    } else if (numGuesses === 0 && hiddenWord.includes("*") === true) {
+      loserMessage();
+    }
   }
 };
 //TODO:
-// fix: dont repeat same letter
+// fix: yes no buttons should appear just once
 // fix: yes/no buttons under the correct div element
 // feat: yes/no buttons affect the next screen
 // fix: improve UI UX and style
