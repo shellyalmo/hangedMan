@@ -2,10 +2,9 @@
 const checkGuessValidity = (guess) => {
   if (guess.length === 1 && guess.match(/[a-zA-Z]/)) {
     guess = guess.toLowerCase(); // not case sensitive
-    alert(guess);
     return true;
   } else {
-    alert("The guess is invalid. Please try again.");
+    alert("The guess is invalid. Please enter only one letter.");
     return false;
   }
 };
@@ -22,6 +21,7 @@ const isGuessInsideWord = (guess) => {
     alert("Correct guess!");
     return guess;
   } else {
+    alert("Wrong guess!")
     usedLetters.push(guess)
     document.getElementById("usedLetters").innerHTML = usedLetters;
     return false;
@@ -91,13 +91,13 @@ let hiddenWord = chosenWord.replace(/[a-zA-Z]/g, "*");
 document.getElementById("hiddenWord").innerHTML = hiddenWord;
 
 const guessHandler = () => {
-  let guess = document.getElementById("guess").value;
+  let guess = document.getElementById("guess").value.toLowerCase();
   if (guess === chosenWord) {
     let winningMessage = `You won! the word was: ${chosenWord}`;
     document.getElementById("gameOver").innerHTML = winningMessage;
-    // numGuesses = 0;
+    numGuesses = 0;
   }
-  if (checkGuessValidity(guess)) {
+  else if (checkGuessValidity(guess)) {
     let correctGuess = isGuessInsideWord(guess);
     numGuessesCalculator(correctGuess);
     hiddenWordPrinter(correctGuess);
@@ -108,4 +108,4 @@ const guessHandler = () => {
 };
 
 // alert-> winning screen
-// update values that change in DOM
+

@@ -46,23 +46,31 @@
       </div>
       <div class="row">
         <div class="col">
-          <h4 >The secret word is: <strong id="chosenWord"></strong> <strong id="hiddenWord"></strong></h4>
+          <h4>
+            The secret word is: <strong id="chosenWord"></strong>
+            <strong id="hiddenWord"></strong>
+          </h4>
         </div>
       </div>
       <div class="row">
         <div class="col-sm">
-          <form class="form-inline">
+          <form class="form-inline" autocomplete="off">
             <div class="form-group mb-2">
               <h4>What is your guess?</h4>
             </div>
             <div class="form-group mx-sm-3 mb-2">
               <input
                 id="guess"
-                type="text"
+                type="search"
+                required
                 placeholder="enter only one letter..."
               />
             </div>
-            <button type="button" class="btn btn-primary mb-2" onclick="guessHandler()">
+            <button
+              type="button"
+              class="btn btn-primary mb-2"
+              onclick="guessHandler()"
+            >
               Guess
             </button>
           </form>
@@ -83,6 +91,5 @@
       </div>
     </div>
   </body>
-  <script
-    src="hangedMan.js"></script>
+  <script src="hangedMan.js"></script>
 </html>
