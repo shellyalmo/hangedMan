@@ -34,7 +34,7 @@ const numGuessesCalculator = (isGuessCorrect) => {
   if (isGuessCorrect === false) {
     numGuesses -= 1;
   }
-  alert("You have " + numGuesses + " guesses.\n");
+  document.getElementById("numGuesses").innerHTML = numGuesses;
   return numGuesses;
 };
 
@@ -63,7 +63,11 @@ const winnerOrLoserMessage = () => {
   }
 };
 
-let numGuesses = 1; //TODO: update value
+//TODO: write "play again?" function
+
+let numGuesses = 10; 
+document.getElementById("numGuesses").innerHTML = numGuesses;
+
 let words = [
   "freedom",
   "morning",
@@ -87,9 +91,9 @@ const guessHandler = () => {
   // TODO: replace while loop
   let guess = document.getElementById("guess").value;
   if (guess === chosenWord) {
-    // TODO: change to winning screen
-    alert("Wow you are good!!\nYou won, bye bye!");
-    numGuesses = 0;
+    let winningMessage = `You won! the word was: ${chosenWord}`;
+    document.getElementById("gameOver").innerHTML = winningMessage;
+    // numGuesses = 0;
   }
   if (checkGuessValidity(guess)) {
     let correctGuess = isGuessInsideWord(guess);
@@ -98,7 +102,7 @@ const guessHandler = () => {
   } else {
     //TODO: do something
   }
-  winnerOrLoserMessage();
+  // winnerOrLoserMessage();
 };
 
 // alert-> winning screen
