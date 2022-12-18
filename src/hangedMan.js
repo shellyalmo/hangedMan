@@ -21,8 +21,8 @@ const isGuessInsideWord = (guess) => {
     alert("Correct guess!");
     return guess;
   } else {
-    alert("Wrong guess!")
-    usedLetters.push(guess)
+    alert("Wrong guess!");
+    usedLetters.push(guess);
     document.getElementById("usedLetters").innerHTML = usedLetters;
     return false;
   }
@@ -57,16 +57,31 @@ const hiddenWordPrinter = (correctGuess) => {
 /*this function tells the user if they won or lost*/
 const winnerOrLoserMessage = () => {
   if (hiddenWord.includes("*") === false) {
-    alert("Wow you are good!!\nYou won, bye bye!");
+    let winningMessage = `You won! the word was: ${chosenWord}`;
+    document.getElementById("gameOver").innerHTML = winningMessage;
     numGuesses = 0;
+    playAgainMessage();
   } else if (numGuesses <= 0 && hiddenWord.includes("*") === true) {
-    alert("Sorry you lost. The word was " + chosenWord + ".\nBye bye!");
+    let losingMessage = `You lost! the word was: ${chosenWord}`;
+    document.getElementById("gameOver").innerHTML = losingMessage;
+    playAgainMessage();
   }
 };
 
 //TODO: write "play again?" function
+const playAgainMessage = () => {
+  document.getElementById("playAgain").innerHTML = "Play Again?";
+  let yesBtn = document.createElement("button");
+  yesBtn.className = "btn btn-primary";
+  yesBtn.innerHTML = "Yes";
+  document.body.appendChild(yesBtn);
+  let noBtn = document.createElement("button");
+  noBtn.className = "btn btn-primary";
+  noBtn.innerHTML = "No";
+  document.body.appendChild(noBtn);
+};
 
-let numGuesses = 3; 
+let numGuesses = 3;
 document.getElementById("numGuesses").innerHTML = numGuesses;
 
 let words = [
@@ -83,7 +98,7 @@ let words = [
   "performance",
 ];
 
-let usedLetters=[];
+let usedLetters = [];
 
 let chosenWord = chooseRandomWord(words);
 document.getElementById("chosenWord").innerHTML = chosenWord;
@@ -93,19 +108,13 @@ document.getElementById("hiddenWord").innerHTML = hiddenWord;
 const guessHandler = () => {
   let guess = document.getElementById("guess").value.toLowerCase();
   if (guess === chosenWord) {
-    let winningMessage = `You won! the word was: ${chosenWord}`;
-    document.getElementById("gameOver").innerHTML = winningMessage;
-    numGuesses = 0;
-  }
-  else if (checkGuessValidity(guess)) {
+    winnerOrLoserMessage();
+  } else if (checkGuessValidity(guess)) {
     let correctGuess = isGuessInsideWord(guess);
     numGuessesCalculator(correctGuess);
     hiddenWordPrinter(correctGuess);
-  } else {
-    //TODO: do something
+  } else if (numGuesses === 0) {
+    winnerOrLoserMessage();
   }
-  // winnerOrLoserMessage();
+  winnerOrLoserMessage();
 };
-
-// alert-> winning screen
-
