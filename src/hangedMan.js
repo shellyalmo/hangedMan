@@ -47,7 +47,7 @@ const hiddenWordPrinter = (correctGuess) => {
     }
   }
 
-  alert(hiddenWord);
+  document.getElementById("hiddenWord").innerHTML = hiddenWord;
   return hiddenWord;
 };
 
@@ -84,7 +84,7 @@ let words = [
 
 let chosenWord = chooseRandomWord(words);
 document.getElementById("chosenWord").innerHTML = chosenWord;
-let hiddenWord = chosenWord.replace(/[a-zA-Z]/g, "_ ");
+let hiddenWord = chosenWord.replace(/[a-zA-Z]/g, "*");
 document.getElementById("hiddenWord").innerHTML = hiddenWord;
 
 const guessHandler = () => {
