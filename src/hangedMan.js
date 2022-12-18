@@ -82,11 +82,17 @@ const playAgainMessage = () => {
   document.getElementById("playAgain").appendChild(yesBtn);
   let noBtn = document.createElement("button");
   noBtn.className = "btn btn-danger";
+  noBtn.id ="stopGame"
   noBtn.innerHTML = "No";
   document.getElementById("playAgain").appendChild(noBtn);
 
   document.getElementById("newGame").setAttribute("onclick", "location.reload()");
+  document.getElementById("stopGame").setAttribute("onclick", "byeMessage()");
 };
+
+const byeMessage = () =>{
+  document.getElementById("bye").innerHTML = "Bye Bye!";
+}
 
 let numGuesses = 4;
 document.getElementById("numGuesses").innerHTML = numGuesses;
