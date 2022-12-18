@@ -54,29 +54,29 @@ const hiddenWordPrinter = (correctGuess) => {
 
 // console.assert("f******" == hiddenWordPrinter("f"));
 
-/*this function tells the user if they won or lost*/
-const winnerOrLoserMessage = () => {
-  if (hiddenWord.includes("*") === false) {
-    let winningMessage = `You won! the word was: ${chosenWord}`;
-    document.getElementById("gameOver").innerHTML = winningMessage;
-    numGuesses = 0;
-    playAgainMessage();
-  } else if (numGuesses <= 0 && hiddenWord.includes("*") === true) {
-    let losingMessage = `You lost! the word was: ${chosenWord}`;
-    document.getElementById("gameOver").innerHTML = losingMessage;
-    playAgainMessage();
-  }
+//this function tells the user if they won
+const winnerMessage = () => {
+  let winningMessage = `You won! the word was: ${chosenWord}`;
+  document.getElementById("gameOver").innerHTML = winningMessage;
+  numGuesses = 0;
+  playAgainMessage();
 };
 
-//TODO: write "play again?" function
+// this function tells the user if they won
+const loserMessage = () => {
+  let losingMessage = `You lost! the word was: ${chosenWord}`;
+  document.getElementById("gameOver").innerHTML = losingMessage;
+  playAgainMessage();
+};
+
 const playAgainMessage = () => {
   document.getElementById("playAgain").innerHTML = "Play Again?";
   let yesBtn = document.createElement("button");
-  yesBtn.className = "btn btn-primary";
+  yesBtn.className = "btn btn-success";
   yesBtn.innerHTML = "Yes";
   document.body.appendChild(yesBtn);
   let noBtn = document.createElement("button");
-  noBtn.className = "btn btn-primary";
+  noBtn.className = "btn btn-danger";
   noBtn.innerHTML = "No";
   document.body.appendChild(noBtn);
 };
@@ -108,13 +108,13 @@ document.getElementById("hiddenWord").innerHTML = hiddenWord;
 const guessHandler = () => {
   let guess = document.getElementById("guess").value.toLowerCase();
   if (guess === chosenWord) {
-    winnerOrLoserMessage();
+    winnerMessage();
   } else if (checkGuessValidity(guess)) {
     let correctGuess = isGuessInsideWord(guess);
     numGuessesCalculator(correctGuess);
     hiddenWordPrinter(correctGuess);
-  } else if (numGuesses === 0) {
-    winnerOrLoserMessage();
+  } if (numGuesses === 0 && hiddenWord.includes("*") === true) {
+    loserMessage();
   }
-  winnerOrLoserMessage();
+  // winnerOrLoserMessage();
 };
