@@ -1,5 +1,5 @@
 # hangedMan
-HangedMan game written with vanilla Javascript, as part of my FullStack Bootcamp precourse assignment
+HangedMan game written with vanilla Javascript and uses Bootstrap, as part of my FullStack Bootcamp precourse assignment
 
 The program generates a random word from an existing words archive and hides its letters by asterisks.
 The program gets from the user an input which has to be either a single letter guessed or the entire correct word guessed.
