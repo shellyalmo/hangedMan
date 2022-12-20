@@ -20,15 +20,23 @@ const isGuessInsideWord = (guess) => {
   if (chosenWord.includes(guess)) {
     alert("Correct guess!");
     return guess;
-  } else if (!chosenWord.includes(guess) && usedLetters.includes(guess)) {
-    alert("You already guessed that. Please guess a new letter.");
   } else {
     alert("Wrong guess!");
-    usedLetters.push(guess);
-    document.getElementById("usedLetters").innerHTML = usedLetters;
     return false;
   }
 };
+
+//this function check if the guessed letter was already used before
+const wasGuessedBefore = (guess) => {
+  if (usedLetters.includes(guess)) {
+    alert("You already guessed that. Please guess a new letter.");
+    return true;
+  } else {
+    usedLetters.push(guess);
+    return false;
+  }
+};
+
 // console.assert(true==isGuessInsideWord("f","face"))
 // console.assert(false==isGuessInsideWord("1","face"))
 
@@ -77,28 +85,31 @@ const playAgainMessage = () => {
   document.getElementById("playAgain").innerHTML = "Play Again?";
   let yesBtn = document.createElement("button");
   yesBtn.className = "btn btn-success";
-  yesBtn.id="newGame"
+  yesBtn.id = "newGame";
   yesBtn.innerHTML = "Yes";
   document.getElementById("playAgain").appendChild(yesBtn);
   let noBtn = document.createElement("button");
   noBtn.className = "btn btn-danger";
-  noBtn.id ="stopGame"
+  noBtn.id = "stopGame";
   noBtn.innerHTML = "No";
   document.getElementById("playAgain").appendChild(noBtn);
 
-  document.getElementById("newGame").setAttribute("onclick", "location.reload()");
+  document
+    .getElementById("newGame")
+    .setAttribute("onclick", "location.reload()");
   document.getElementById("stopGame").setAttribute("onclick", "byeMessage()");
 };
 
-const byeMessage = () =>{
+const byeMessage = () => {
   document.getElementById("bye").innerHTML = "Bye Bye!";
-}
+};
 
 let numGuesses = 4;
 document.getElementById("numGuesses").innerHTML = numGuesses;
 
 let words = [
-  "high",
+  "hello",
+  "world",
   // "freedom",
   // "morning",
   // "recursion",
@@ -115,7 +126,7 @@ let words = [
 let usedLetters = [];
 
 let chosenWord = chooseRandomWord(words);
-document.getElementById("chosenWord").innerHTML = chosenWord;
+// document.getElementById("chosenWord").innerHTML = chosenWord;
 let hiddenWord = chosenWord.replace(/[a-zA-Z]/g, "*");
 document.getElementById("hiddenWord").innerHTML = hiddenWord;
 
@@ -125,7 +136,7 @@ const guessHandler = () => {
     alert("Game Over!");
   } else if (guess === chosenWord && numGuesses > 0) {
     winnerMessage();
-  } else if (checkGuessValidity(guess)) {
+  } else if (checkGuessValidity(guess) && !wasGuessedBefore(guess)) {
     let correctGuess = isGuessInsideWord(guess);
     numGuessesCalculator(correctGuess);
     hiddenWordPrinter(correctGuess);
@@ -135,10 +146,14 @@ const guessHandler = () => {
       loserMessage();
     }
   }
+  document.getElementById("usedLetters").innerHTML = usedLetters;
 };
 
 //TODO:
-// feat: yes/no buttons affect the next screen
+// fix: hit enter key for submit
+// html validation insead of js function - browser shows good visual warning and doesnt let type when theres a pattern
+// auto delete on form
+// instead of alerts- message on the screen - query selector node.remove
 // fix: improve UI UX and style
 // refactor: clean code not repetitive
 // delete secret word from screen
