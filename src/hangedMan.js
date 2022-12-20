@@ -119,6 +119,7 @@ let hiddenWord = chosenWord.replace(/[a-zA-Z]/g, "*");
 document.getElementById("hiddenWord").innerHTML = hiddenWord;
 
 const guessHandler = () => {
+  event.preventDefault();
   let guess = document.getElementById("guess").value.toLowerCase();
   if (document.getElementById("guess").disabled === true) {
     alert("Game Over!");
@@ -138,7 +139,6 @@ const guessHandler = () => {
 };
 
 //TODO:
-// fix: hit enter key for submit
 // auto delete on form
 // instead of alerts- message on the screen -
 // change screen completely- query selector node.remove
