@@ -61,7 +61,7 @@ const winnerMessage = () => {
   document.getElementById("gameBoard").remove();
   let winningMessage = `You won! the word was: ${chosenWord}`;
   document.getElementById("gameOver").innerHTML = winningMessage;
-  document.getElementById("resultImage").innerHTML = "<img src='https://media.tenor.com/xcEIKm1elMUAAAAC/macarena-dance-stick-man.gif'>"
+  document.getElementById("resultImage").innerHTML = "<img class='img-fluid' src='https://media.tenor.com/xcEIKm1elMUAAAAC/macarena-dance-stick-man.gif'>"
   numGuesses = 0;
   playAgainMessage();
 };
@@ -71,7 +71,7 @@ const loserMessage = () => {
   document.getElementById("gameBoard").remove();
   let losingMessage = `You lost! the word was: ${chosenWord}`;
   document.getElementById("gameOver").innerHTML = losingMessage;
-  document.getElementById("resultImage").innerHTML = "<img src='https://media.tenor.com/u_yuMBHRKREAAAAC/suicide-stick-figure.gif'>"
+  document.getElementById("resultImage").innerHTML = "<img class='img-fluid' src='https://media.tenor.com/u_yuMBHRKREAAAAC/suicide-stick-figure.gif'>"
 
   
   playAgainMessage();
@@ -101,7 +101,7 @@ const playAgainMessage = () => {
 const byeMessage = () => {
   document.getElementById("gameResult").remove();
   document.getElementById("bye").innerHTML = "See you next time!";
-  document.getElementById("byeImage").innerHTML = "<img src='../assets/bye.jpg'>"
+  document.getElementById("byeImage").innerHTML = "<img class='img-fluid' src='../assets/bye.jpg'>"
 
 };
 
