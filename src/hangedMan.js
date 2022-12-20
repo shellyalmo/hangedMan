@@ -1,14 +1,3 @@
-/*this function checks if the user input is only a letter and one character long */
-const checkGuessValidity = (guess) => {
-  if (guess.length === 1 && guess.match(/[a-zA-Z]/)) {
-    guess = guess.toLowerCase(); // not case sensitive
-    return true;
-  } else {
-    alert("The guess is invalid. Please enter only one letter.");
-    return false;
-  }
-};
-
 /*this function gets a random word from the global words array*/
 const chooseRandomWord = (wordsArray) => {
   theChosenWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
@@ -126,7 +115,6 @@ let words = [
 let usedLetters = [];
 
 let chosenWord = chooseRandomWord(words);
-// document.getElementById("chosenWord").innerHTML = chosenWord;
 let hiddenWord = chosenWord.replace(/[a-zA-Z]/g, "*");
 document.getElementById("hiddenWord").innerHTML = hiddenWord;
 
@@ -136,7 +124,7 @@ const guessHandler = () => {
     alert("Game Over!");
   } else if (guess === chosenWord && numGuesses > 0) {
     winnerMessage();
-  } else if (checkGuessValidity(guess) && !wasGuessedBefore(guess)) {
+  } else if (!wasGuessedBefore(guess)) {
     let correctGuess = isGuessInsideWord(guess);
     numGuessesCalculator(correctGuess);
     hiddenWordPrinter(correctGuess);
@@ -151,9 +139,9 @@ const guessHandler = () => {
 
 //TODO:
 // fix: hit enter key for submit
-// html validation insead of js function - browser shows good visual warning and doesnt let type when theres a pattern
 // auto delete on form
-// instead of alerts- message on the screen - query selector node.remove
+// instead of alerts- message on the screen -
+// change screen completely- query selector node.remove
 // fix: improve UI UX and style
 // refactor: clean code not repetitive
 // delete secret word from screen

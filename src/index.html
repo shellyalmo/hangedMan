@@ -47,7 +47,7 @@
       <div class="row">
         <div class="col">
           <h4>
-            The secret word is: 
+            The secret word is:
             <!-- <strong id="chosenWord"></strong> -->
             <strong id="hiddenWord"></strong>
           </h4>
@@ -55,7 +55,11 @@
       </div>
       <div class="row">
         <div class="col-sm">
-          <form class="form-inline" autocomplete="off" onsubmit="guessHandler()">
+          <form
+            class="form-inline"
+            autocomplete="off"
+            onsubmit="guessHandler()"
+          >
             <div class="form-group mb-2">
               <h4>What is your guess?</h4>
             </div>
@@ -64,7 +68,10 @@
                 id="guess"
                 type="search"
                 required
+                pattern="[A-Za-z]"
                 placeholder="enter only one letter..."
+                maxlength="1"
+                title="one letter"
               />
             </div>
             <button
