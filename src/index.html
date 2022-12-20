@@ -37,7 +37,7 @@
     <link rel="manifest" href="/assets/site.webmanifest" />
     <title>Hangman Game</title>
   </head>
-  <body>
+  <body class="p-3 mb-2 bg-dark text-white">
     <div class="container" id="gameBoard">
       <div class="row">
         <div class="col-sm">
@@ -70,7 +70,7 @@
                 type="search"
                 required
                 pattern="[A-Za-z]+"
-                placeholder="one letter or whole word..."
+                placeholder="1 letter or entire word"
                 title="one letter or whole correct word"
               />
             </div>
@@ -96,12 +96,17 @@
           <h1 id="gameOver"></h1>
           <h2 id="playAgain"></h2>
         </div>
+        <div class="col-bg" id="resultImage">
+        </div>
       </div>
     </div>
     <div class="container" id="endGame">
       <div class="row">
         <div class="col-bg">
           <h1 id="bye"></h1>
+        </div>
+        <div class="col-bg" id="byeImage">
+
         </div>
       </div>
     </div>
