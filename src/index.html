@@ -38,7 +38,7 @@
     <title>Hangman Game</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="gameBoard">
       <div class="row">
         <div class="col-sm">
           <h1>Welcome to Hangman game!</h1>
@@ -90,12 +90,16 @@
           <h4>Letters you used: <del id="usedLetters"></del></h4>
         </div>
       </div>
+    </div>
+    <div class="container" id="gameResult">
       <div class="row">
         <div class="col-bg">
           <h1 id="gameOver"></h1>
           <h2 id="playAgain"></h2>
         </div>
       </div>
+    </div>
+    <div class="container" id="endGame">
       <div class="row">
         <div class="col-bg">
           <h1 id="bye"></h1>

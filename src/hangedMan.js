@@ -58,6 +58,7 @@ const hiddenWordPrinter = (correctGuess) => {
 
 //this function tells the user if they won
 const winnerMessage = () => {
+  document.getElementById("gameBoard").remove();
   let winningMessage = `You won! the word was: ${chosenWord}`;
   document.getElementById("gameOver").innerHTML = winningMessage;
   numGuesses = 0;
@@ -66,6 +67,7 @@ const winnerMessage = () => {
 
 // this function tells the user if they lost
 const loserMessage = () => {
+  document.getElementById("gameBoard").remove();
   let losingMessage = `You lost! the word was: ${chosenWord}`;
   document.getElementById("gameOver").innerHTML = losingMessage;
   playAgainMessage();
@@ -73,7 +75,7 @@ const loserMessage = () => {
 
 // TODO:this function asks the user if they want to play again and restarts the screen
 const playAgainMessage = () => {
-  document.getElementById("guess").disabled = true;
+  // document.getElementById("guess").disabled = true;
   document.getElementById("playAgain").innerHTML = "Play Again?";
   let yesBtn = document.createElement("button");
   yesBtn.className = "btn btn-success";
@@ -93,6 +95,7 @@ const playAgainMessage = () => {
 };
 
 const byeMessage = () => {
+  document.getElementById("gameResult").remove();
   document.getElementById("bye").innerHTML = "Bye Bye!";
 };
 
@@ -125,7 +128,6 @@ const guessHandler = () => {
   let guess = document.getElementById("guess").value.toLowerCase();
   if (document.getElementById("guess").disabled === true) {
     document.getElementById("gameStatus").innerHTML = "Game over!";
-
   } else if (guess === chosenWord && numGuesses > 0) {
     winnerMessage();
   } else if (!wasGuessedBefore(guess)) {
@@ -144,6 +146,8 @@ const guessHandler = () => {
 
 //TODO:
 // change screen completely- query selector node.remove
+// fiX: no sscreen
+// fix:let guess whole word
 // fix: improve UI UX and style
 // refactor: clean code
 // deploy
