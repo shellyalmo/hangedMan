@@ -56,9 +56,10 @@
       <div class="row">
         <div class="col-sm">
           <form
+            id="guessForm"
             class="form-inline"
             autocomplete="off"
-            onsubmit="guessHandler()"
+            onsubmit="guessHandler();event.preventDefault();"
           >
             <div class="form-group mb-2">
               <h4>What is your guess?</h4>
