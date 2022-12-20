@@ -119,7 +119,6 @@ let hiddenWord = chosenWord.replace(/[a-zA-Z]/g, "*");
 document.getElementById("hiddenWord").innerHTML = hiddenWord;
 
 const guessHandler = () => {
-  
   let guess = document.getElementById("guess").value.toLowerCase();
   if (document.getElementById("guess").disabled === true) {
     alert("Game Over!");
@@ -136,6 +135,7 @@ const guessHandler = () => {
     }
   }
   document.getElementById("usedLetters").innerHTML = usedLetters;
+  document.getElementById("guessForm").reset();
 };
 
 //TODO:
