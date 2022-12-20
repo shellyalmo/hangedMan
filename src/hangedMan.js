@@ -145,9 +145,7 @@ const guessHandler = () => {
 };
 
 //TODO:
-// change screen completely- query selector node.remove
-// fiX: no sscreen
-// fix:let guess whole word
+
 // fix: improve UI UX and style
 // refactor: clean code
 // deploy
