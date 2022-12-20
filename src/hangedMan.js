@@ -7,10 +7,11 @@ const chooseRandomWord = (wordsArray) => {
 /*this function checks if the guessed letter is part of the word*/
 const isGuessInsideWord = (guess) => {
   if (chosenWord.includes(guess)) {
-    alert("Correct guess!");
+    document.getElementById("gameStatus").innerHTML = "Correct guess!";
+
     return guess;
   } else {
-    alert("Wrong guess!");
+    document.getElementById("gameStatus").innerHTML = "Wrong guess!";
     return false;
   }
 };
@@ -18,7 +19,9 @@ const isGuessInsideWord = (guess) => {
 //this function check if the guessed letter was already used before
 const wasGuessedBefore = (guess) => {
   if (usedLetters.includes(guess)) {
-    alert("You already guessed that. Please guess a new letter.");
+    document.getElementById("gameStatus").innerHTML =
+      "You already guessed that. Please guess a new letter.";
+
     return true;
   } else {
     usedLetters.push(guess);
@@ -121,7 +124,8 @@ document.getElementById("hiddenWord").innerHTML = hiddenWord;
 const guessHandler = () => {
   let guess = document.getElementById("guess").value.toLowerCase();
   if (document.getElementById("guess").disabled === true) {
-    alert("Game Over!");
+    document.getElementById("gameStatus").innerHTML = "Game over!";
+
   } else if (guess === chosenWord && numGuesses > 0) {
     winnerMessage();
   } else if (!wasGuessedBefore(guess)) {
@@ -139,11 +143,8 @@ const guessHandler = () => {
 };
 
 //TODO:
-// auto delete on form
-// instead of alerts- message on the screen -
 // change screen completely- query selector node.remove
 // fix: improve UI UX and style
-// refactor: clean code not repetitive
-// delete secret word from screen
+// refactor: clean code
 // deploy
 // update github and post linkedin
