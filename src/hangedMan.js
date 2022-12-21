@@ -99,7 +99,7 @@ const loserMessage = () => {
   addContentHtml("gameOver", losingMessage);
   addContentHtml(
     "resultImage",
-    "<img class='img-fluid' src='https://media.tenor.com/u_yuMBHRKREAAAAC/suicide-stick-figure.gif'>"
+    "<img class='img-fluid' src='https://media.tenor.com/UekCpBGvDKkAAAAC/fall-apart.gif'>"
   );
 
   playAgainMessage();
