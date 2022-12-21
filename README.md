@@ -8,3 +8,5 @@ Then the program checks if the single letter appears inside the random generated
 If so, the program reveals the correct letter in the hidden word and replaces the asterisk with the correct letter.
 If the guessed letter isn't correct, the program reduces the amount of guesses the user has and alerts the user.
 Finally, the program tells the user if they won, or lost and shows what the word was.
+
+Tested in chrome recorder, by importing the test file and clicking run.
