@@ -135,7 +135,7 @@ const playAgainMessage = () => {
 const byeMessage = () => {
   document.getElementById("gameResult")?.remove();
   addContentHtml("bye", "See you next time!");
-  addContentHtml("byeImage", "<img class='img-fluid' src='../assets/bye.jpg'>");
+  addContentHtml("byeImage", "<img class='img-fluid' src='./assets/bye.jpg'>");
 };
 
 /**
