@@ -1,26 +1,37 @@
-/*this function gets a random word from the global words array*/
+/**
+ * this function gets a random word from the global words array
+ * @param {Array<string>} wordsArray
+ * @returns {string}
+ */
 const chooseRandomWord = (wordsArray) => {
-  theChosenWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+  let theChosenWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
   return theChosenWord;
 };
-
-/*this function checks if the guessed letter is part of the word*/
+/**
+ *this function checks if the guessed letter is part of the word
+ * @param {string} guess
+ * @returns {boolean}
+ */
 const isGuessInsideWord = (guess) => {
   if (chosenWord.includes(guess)) {
-    document.getElementById("gameStatus").innerHTML = "Correct guess!";
-
-    return guess;
+    addContentHtml("gameStatus", "Correct guess!");
+    return true;
   } else {
-    document.getElementById("gameStatus").innerHTML = "Wrong guess!";
+    addContentHtml("gameStatus", "Wrong guess!");
     return false;
   }
 };
-
-//this function check if the guessed letter was already used before
+/**
+ *this function check if the guessed letter was already used before
+ * @param {string} guess
+ * @returns {boolean}
+ */
 const wasGuessedBefore = (guess) => {
   if (usedLetters.includes(guess)) {
-    document.getElementById("gameStatus").innerHTML =
-      "You already guessed that. Please guess a new letter.";
+    addContentHtml(
+      "gameStatus",
+      "You already guessed that. Please guess a new letter."
+    );
 
     return true;
   } else {
@@ -32,16 +43,25 @@ const wasGuessedBefore = (guess) => {
 // console.assert(true==isGuessInsideWord("f","face"))
 // console.assert(false==isGuessInsideWord("1","face"))
 
-/*this function calculates how many guesses the user has*/
+/**
+ *this function calculates how many guesses the user has
+ * @param {boolean} isGuessCorrect
+ * @returns {number}
+ */
 const numGuessesCalculator = (isGuessCorrect) => {
   if (isGuessCorrect === false) {
     numGuesses -= 1;
   }
-  document.getElementById("numGuesses").innerHTML = numGuesses;
+  addContentHtml("numGuesses", numGuesses.toString());
   return numGuesses;
 };
 
-/*this function prints the secret word hidden by asteriks and reveals correct letters*/
+/**
+ *
+ *this function prints the secret word hidden by asteriks and reveals correct letters
+ * @param {string} correctGuess
+ * @returns {string}
+ */
 const hiddenWordPrinter = (correctGuess) => {
   for (let j = 0; j < chosenWord.length; j++) {
     if (correctGuess === chosenWord[j]) {
@@ -50,7 +70,7 @@ const hiddenWordPrinter = (correctGuess) => {
     }
   }
 
-  document.getElementById("hiddenWord").innerHTML = hiddenWord;
+  addContentHtml("hiddenWord", hiddenWord);
   return hiddenWord;
 };
 
@@ -58,101 +78,128 @@ const hiddenWordPrinter = (correctGuess) => {
 
 //this function tells the user if they won
 const winnerMessage = () => {
-  document.getElementById("gameBoard").remove();
+  const gameBoardElement = document.getElementById("gameBoard");
+  if (gameBoardElement) {
+    gameBoardElement.remove();
+  }
   let winningMessage = `You won! the word was: ${chosenWord}`;
-  document.getElementById("gameOver").innerHTML = winningMessage;
-  document.getElementById("resultImage").innerHTML = "<img class='img-fluid' src='https://media.tenor.com/xcEIKm1elMUAAAAC/macarena-dance-stick-man.gif'>"
+  addContentHtml("gameOver", winningMessage);
+  addContentHtml(
+    "resultImage",
+    "<img class='img-fluid' src='https://media.tenor.com/xcEIKm1elMUAAAAC/macarena-dance-stick-man.gif'>"
+  );
   numGuesses = 0;
   playAgainMessage();
 };
 
 // this function tells the user if they lost
 const loserMessage = () => {
-  document.getElementById("gameBoard").remove();
+  document.getElementById("gameBoard")?.remove();
   let losingMessage = `You lost! the word was: ${chosenWord}`;
-  document.getElementById("gameOver").innerHTML = losingMessage;
-  document.getElementById("resultImage").innerHTML = "<img class='img-fluid' src='https://media.tenor.com/u_yuMBHRKREAAAAC/suicide-stick-figure.gif'>"
+  addContentHtml("gameOver", losingMessage);
+  addContentHtml(
+    "resultImage",
+    "<img class='img-fluid' src='https://media.tenor.com/u_yuMBHRKREAAAAC/suicide-stick-figure.gif'>"
+  );
 
-  
   playAgainMessage();
 };
 
 // this function asks the user if they want to play again and restarts the screen
 const playAgainMessage = () => {
-  // document.getElementById("guess").disabled = true;
-  document.getElementById("playAgain").innerHTML = "Play Again?";
-  let yesBtn = document.createElement("button");
-  yesBtn.className = "btn btn-success";
-  yesBtn.id = "newGame";
-  yesBtn.innerHTML = "Yes";
-  document.getElementById("playAgain").appendChild(yesBtn);
-  let noBtn = document.createElement("button");
-  noBtn.className = "btn btn-danger";
-  noBtn.id = "stopGame";
-  noBtn.innerHTML = "No";
-  document.getElementById("playAgain").appendChild(noBtn);
+  const playAgainElement = document.getElementById("playAgain");
+  if (playAgainElement) {
+    // addContentHtml("guess").disabled = true;
+    addContentHtml("playAgain", "Play Again?");
+    let yesBtn = document.createElement("button");
+    yesBtn.className = "btn btn-success";
+    yesBtn.id = "newGame";
+    yesBtn.innerText = "Yes";
+    playAgainElement.appendChild(yesBtn);
+    let noBtn = document.createElement("button");
+    noBtn.className = "btn btn-danger";
+    noBtn.id = "stopGame";
+    noBtn.innerText = "No";
+    playAgainElement.appendChild(noBtn);
 
-  document
-    .getElementById("newGame")
-    .setAttribute("onclick", "location.reload()");
-  document.getElementById("stopGame").setAttribute("onclick", "byeMessage()");
+    document
+      .getElementById("newGame")
+      ?.setAttribute("onclick", "location.reload()");
+    const stopGameElement = document.getElementById("stopGame");
+    if (stopGameElement) {
+      stopGameElement.setAttribute("onclick", "byeMessage()");
+    }
+  }
 };
 
 const byeMessage = () => {
-  document.getElementById("gameResult").remove();
-  document.getElementById("bye").innerHTML = "See you next time!";
-  document.getElementById("byeImage").innerHTML = "<img class='img-fluid' src='../assets/bye.jpg'>"
+  document.getElementById("gameResult")?.remove();
+  addContentHtml("bye", "See you next time!");
+  addContentHtml("byeImage", "<img class='img-fluid' src='../assets/bye.jpg'>");
+};
 
+/**
+ * add content on html
+ * @param {string} elementId
+ * @param {string} message
+ */
+const addContentHtml = (elementId, message) => {
+  const element = document.getElementById(elementId);
+  if (element) {
+    element.innerHTML = message;
+  }
 };
 
 let numGuesses = 4;
-document.getElementById("numGuesses").innerHTML = numGuesses;
+addContentHtml("numGuesses", numGuesses.toString());
 
 let words = [
   "hello",
   "world",
-  // "freedom",
-  // "morning",
-  // "recursion",
-  // "burger",
-  // "object",
-  // "container",
-  // "debugger",
-  // "python",
-  // "console",
-  // "network",
-  // "performance",
+  "freedom",
+  "morning",
+  "recursion",
+  "burger",
+  "object",
+  "container",
+  "debugger",
+  "python",
+  "console",
+  "network",
+  "performance",
 ];
 
 let usedLetters = [];
 
 let chosenWord = chooseRandomWord(words);
 let hiddenWord = chosenWord.replace(/[a-zA-Z]/g, "*");
-document.getElementById("hiddenWord").innerHTML = hiddenWord;
+addContentHtml("hiddenWord", hiddenWord);
 
 const guessHandler = () => {
-  let guess = document.getElementById("guess").value.toLowerCase();
-  if (document.getElementById("guess").disabled === true) {
-    document.getElementById("gameStatus").innerHTML = "Game over!";
-  } else if (guess === chosenWord && numGuesses > 0) {
-    winnerMessage();
-  } else if (!wasGuessedBefore(guess)) {
-    let correctGuess = isGuessInsideWord(guess);
-    numGuessesCalculator(correctGuess);
-    hiddenWordPrinter(correctGuess);
-    if (numGuesses > 0 && hiddenWord.includes("*") === false) {
+  const guessInput = document.getElementById("guess");
+  if (guessInput && guessInput instanceof HTMLInputElement) {
+    let guess = guessInput.value.toLowerCase();
+    if (guessInput.disabled === true) {
+      addContentHtml("gameStatus", "Game over!");
+    } else if (guess === chosenWord && numGuesses > 0) {
       winnerMessage();
-    } else if (numGuesses === 0 && hiddenWord.includes("*") === true) {
-      loserMessage();
+    } else if (!wasGuessedBefore(guess)) {
+      let correctGuess = isGuessInsideWord(guess);
+      if (correctGuess) {
+        hiddenWordPrinter(guess);
+      }
+      numGuessesCalculator(correctGuess);
+
+      if (numGuesses > 0 && hiddenWord.includes("*") === false) {
+        winnerMessage();
+      } else if (numGuesses === 0 && hiddenWord.includes("*") === true) {
+        loserMessage();
+      }
+    }
+    addContentHtml("usedLetters", usedLetters.toString());
+    const guessForm = document.getElementById("guessForm");
+    if (guessForm instanceof HTMLFormElement) {
+      guessForm.reset();
     }
   }
-  document.getElementById("usedLetters").innerHTML = usedLetters;
-  document.getElementById("guessForm").reset();
 };
-
-//TODO:
-
-// fix: improve UI UX and style
-// refactor: clean code
-// deploy
-// update github and post linkedin
