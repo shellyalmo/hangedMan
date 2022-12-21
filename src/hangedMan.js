@@ -150,7 +150,7 @@ const addContentHtml = (elementId, message) => {
   }
 };
 
-let numGuesses = 4;
+let numGuesses = 8;
 addContentHtml("numGuesses", numGuesses.toString());
 
 let words = [
